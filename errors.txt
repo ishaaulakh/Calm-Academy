@@ -1,0 +1,11 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/planner.rpy", line 5: invalid syntax
+        redraw planner
+                      ^
+    
+
+Ren'Py Version: Ren'Py 7.4.8.1895
+Sat Dec 30 21:03:44 2023

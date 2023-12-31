@@ -1,0 +1,60 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+After initialization, but before game start.
+  File "game/planner.rpy", line 1, in prepare_screen
+    screen planner:
+  File "game/planner.rpy", line 1, in prepare
+    screen planner:
+  File "game/planner.rpy", line 19, in prepare
+    frame:
+  File "game/planner.rpy", line 19, in prepare
+    frame:
+  File "game/planner.rpy", line 23, in prepare
+    hbox:
+  File "game/planner.rpy", line 23, in prepare
+    hbox:
+  File "game/planner.rpy", line 26, in prepare
+    textbutton _("Clear") xalign 1.0 action [
+  File "game/planner.rpy", line 26, in prepare
+    textbutton _("Clear") xalign 1.0 action [
+SyntaxError: invalid syntax (planner.rpy, line 28)
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "/Users/ishaaulakh/Documents/Documents - Isha’s MacBook Air/renpy-7.4.8-sdk/renpy/bootstrap.py", line 326, in bootstrap
+    renpy.main.main()
+  File "/Users/ishaaulakh/Documents/Documents - Isha’s MacBook Air/renpy-7.4.8-sdk/renpy/main.py", line 617, in main
+    run(restart)
+  File "/Users/ishaaulakh/Documents/Documents - Isha’s MacBook Air/renpy-7.4.8-sdk/renpy/main.py", line 97, in run
+    renpy.display.screen.prepare_screens()
+  File "/Users/ishaaulakh/Documents/Documents - Isha’s MacBook Air/renpy-7.4.8-sdk/renpy/display/screen.py", line 939, in prepare_screens
+    s.ast.prepare_screen()
+  File "game/planner.rpy", line 1, in prepare_screen
+    screen planner:
+  File "game/planner.rpy", line 1, in prepare
+    screen planner:
+  File "game/planner.rpy", line 19, in prepare
+    frame:
+  File "game/planner.rpy", line 19, in prepare
+    frame:
+  File "game/planner.rpy", line 23, in prepare
+    hbox:
+  File "game/planner.rpy", line 23, in prepare
+    hbox:
+  File "game/planner.rpy", line 26, in prepare
+    textbutton _("Clear") xalign 1.0 action [
+  File "game/planner.rpy", line 26, in prepare
+    textbutton _("Clear") xalign 1.0 action [
+  File "/Users/ishaaulakh/Documents/Documents - Isha’s MacBook Air/renpy-7.4.8-sdk/renpy/pyanalysis.py", line 712, in ast_eval
+    return self.ast_eval_literal(expr)[0]
+  File "/Users/ishaaulakh/Documents/Documents - Isha’s MacBook Air/renpy-7.4.8-sdk/renpy/pyanalysis.py", line 696, in ast_eval_literal
+    expr = py_compile(expr, 'eval', ast_node=True)
+  File "/Users/ishaaulakh/Documents/Documents - Isha’s MacBook Air/renpy-7.4.8-sdk/renpy/python.py", line 835, in py_compile
+    raise e
+SyntaxError: invalid syntax (planner.rpy, line 28)
+
+Darwin-23.1.0-x86_64-i386-64bit
+Ren'Py 7.4.8.1895
+Calm Academy Beta
+Sat Dec 30 20:56:45 2023
