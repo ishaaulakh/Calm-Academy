@@ -3,21 +3,21 @@ init python:
     import datetime
 
     #####################################
-    ##### classes for silly backend #####
+    ##### classes for backend #####
     class Task:
         def __init__(self):
             self.name = ""
             self.day = ""
             self.id = -1
             self.priority = -1
-            self.duration = -1.0
+            self.duration = "" # set as a string. needs to be a number in backend
             self.is_finished = False
         
         def reset_data(self):
             self.name = ""
             self.day = ""
             self.priority = -1
-            self.duration = -1
+            self.duration = ""
             self.is_finished = False
     
         def set_name(self, newstring):
@@ -45,6 +45,18 @@ init python:
             return self.is_finished
         def get_id(self):
             return self.id
+        
+        def ready_to_submit(self):
+            if len(self.name) == 0:
+                return False
+            if (self.priority != 1) and (self.priority != 2) and (self.priority != 3) and (self.priority != 4):
+                return False
+            try:
+                temp = float(self.duration)
+            except ValueError:
+                return False
+            return True 
+    
     
     class TaskBackend:
         def __init__(self):
@@ -176,7 +188,11 @@ init python:
         renpy.store.task_to_add.reset_data()
     
     def renpy_store_task_submit():
-        renpy.store.task_backend.add_task(renpy.store.task_to_add)
+        good_task = renpy.store.task_to_add.ready_to_submit()
+        if good_task:
+            renpy.store.task_backend.add_task(renpy.store.task_to_add)
+        else:
+            renpy.show_screen("task_submit_error")
         renpy_store_task_reset()
     
     def renpy_store_get_tasks_on_day(day):

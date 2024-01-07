@@ -2,10 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/planner.rpy", line 5: invalid syntax
-        redraw planner
-                      ^
-    
+File "game/tools.rpy", line 19: keyword argument u'action' appears more than once in a textbutton statement.
+    xalign 0.5action[Show("open_file", entry=entry)]
+                    ^
 
 Ren'Py Version: Ren'Py 7.4.8.1895
-Sat Dec 30 21:03:44 2023
+Sat Jan  6 18:33:42 2024

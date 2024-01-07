@@ -21,12 +21,10 @@ screen planner:
         xsize 1200
         ymaximum 100
         hbox:
-            textbutton _("Back") action [ NullAction() ]
-            text "Today's date is [renpy.store.formatted_date]"
-            textbutton _("Clear") action [
-                lambda: renpy_store_clear_task_backend(),
-                renpy.restart_interaction
-            ]
+            textbutton _("Back") action Rollback()
+            text "   Today's date is [renpy.store.formatted_date]   "
+            xalign 0.5
+            textbutton _("Clear") action[Show("clearTask")]
 
     for i in range(8):
         python:
@@ -47,11 +45,10 @@ screen planner:
                     vbox:
                         text "[day_name]"
                         imagebutton:
-                            id "add_"+"[day_name]"
-                            idle "planner.png"
-                            hover "planner.png"
+                            idle "add.png"
+                            hover "add_hover.png"
                             clicked "planner.png"
-                            action [Show("addTaskName",parameter=day_name), Hide("planner")]
+                            action [Hide("planner"), Show("addTaskName",parameter=day_name)]
                         for task in week_tasks[i]:
                             python:
                                 task_id = task.get_id()

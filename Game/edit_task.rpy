@@ -5,15 +5,11 @@ screen editTaskName(task_id, task_name):
         xsize 1200
         ysize 500
         vbox:
+            xsize 1200
             text "Editing [task_name]"
             hbox:
                 text "Enter New Task Name: "
-                button:
-                    id "task_name_edit"
-                    xysize (250, 25)
-                    action NullAction()
-                    add Input(hover_color="#3399ff",size=28, color="#000", default="", changed=renpy.store.task_to_edit.set_name, length=50)
-
+                input id "task_name_edit" hover_color "#3399ff" size 28 color "#000" default "" changed renpy.store.task_to_edit.set_name length 50
             textbutton _("Save") action [
                 lambda: renpy_store_update_task_name_in_backend(renpy.store.task_to_edit.get_id(), renpy.store.task_to_edit.get_name()), 
                 lambda: renpy.store.task_to_edit.reset_data(),
@@ -33,9 +29,10 @@ screen editTaskPriority(task_id, task_name):
         xsize 1200
         ysize 500
         vbox:
-            text "Editing [task_name]"
+            xsize 1200
+            text "Editing [task_name]" 
             style_prefix "radio"
-            label _("Select [task_name]'s Priority Level")
+            label _("Select [task_name]'s Priority Level") 
             textbutton _("Urgent and Important") action [lambda: renpy.store.task_to_edit.set_priority(1)]
             textbutton _("Urgent and Not Important") action [lambda: renpy.store.task_to_edit.set_priority(2)]
             textbutton _("Not Urgent and Important") action [lambda: renpy.store.task_to_edit.set_priority(3)]
@@ -63,12 +60,7 @@ screen editTaskDuration(task_id, task_name):
             text "Editing [task_name]"
             hbox:
                 text "Enter New Task Duration: "
-                button:
-                    id "task_duration_edit"
-                    xysize (250, 25)
-                    action NullAction()
-                    add Input(hover_color="#3399ff",size=28, color="#000", default="", changed=renpy.store.task_to_edit.set_duration, length=5)
-
+                input id "task_duration_edit" hover_color "#3399ff" size 28 color "#000" default "" changed renpy.store.task_to_edit.set_duration length 5
             textbutton _("Save") action [
                 lambda: renpy_store_update_task_duration_in_backend(renpy.store.task_to_edit.get_id(), renpy.store.task_to_edit.get_duration()),
                 lambda: renpy.store.task_to_edit.reset_data(),
@@ -100,6 +92,27 @@ screen deleteTask(task_id, task_name):
                 lambda: renpy.store.task_to_edit.reset_data(),
                 Hide("deleteTask"),
                 Show("editTask",task_id=task_id, task_name=task_name)
+            ]
+
+
+screen clearTask:
+    modal True
+    frame:
+        xalign 0.5 ypos 0.03
+        xsize 1200
+        ysize 200
+        vbox:
+            text "Are you sure you want to clear all tasks?"
+            textbutton _("Clear All") action [
+                lambda: renpy_store_clear_task_backend(),
+                renpy.restart_interaction,
+                Hide("clearTask"),
+                Show("planner")
+            ]       
+            textbutton _("Back") action [
+                lambda: renpy.store.task_to_edit.reset_data(),
+                Hide("clearTask"),
+                Show("planner")
             ]
 
 screen editTask(task_id, task_name):

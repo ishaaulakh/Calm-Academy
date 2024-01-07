@@ -1,21 +1,26 @@
+screen task_submit_error():
+    zorder 1000
+    modal True
+    frame:
+        xalign 0.5 yalign 0.5
+        xsize 400
+        ysize 200
+        vbox:
+            text "Error in Task Input. Ensure you have set a name, priority level, and input a numerical duration."
+            textbutton _("Okay") action [Hide("task_submit_error"), Show("planner"), Function(renpy_store_task_reset)]
+            xalign 0.5
+
 screen addTaskName(parameter):
     modal True
-
     frame:
         xalign 0.5 ypos 50
         xsize 1200
-        ysize 200
+        ysize 500
         vbox:
             text "[parameter]"
             hbox:
                 text "Enter Task Name: "
-                # input default "type here" id "task_name_input"
-                button:
-                    id "task_name_input"
-                    xysize (250, 25)
-                    action NullAction()
-                    add Input(hover_color="#3399ff",size=28, color="#000", default="", changed=renpy.store.task_to_add.set_name, length=50)
-
+                input id "task_name_input" hover_color "#3399ff" size 28 color "#000" default "" changed renpy.store.task_to_add.set_name length 50
             textbutton _("Next") action [
                 renpy.store.task_to_add.set_day(parameter),
                 Hide("addTaskName"),
@@ -27,12 +32,12 @@ screen addTaskPriority(parameter):
     modal True
     python:
         stored_task_name = renpy.store.task_to_add.get_name()
-
     frame:
         xalign 0.5 ypos 50
         xsize 1200
         ysize 500
         vbox:
+            xsize 1200
             style_prefix "radio"
             label _("Select [stored_task_name]'s Priority Level")
             textbutton _("Urgent and Important") action [lambda: renpy.store.task_to_add.set_priority(1)]
@@ -58,13 +63,7 @@ screen addTaskDuration(parameter):
         vbox:
             hbox:
                 label _("Okay! Now enter how many HOURS you expect to work on [stored_task_name]: ")
-                button:
-                    id "task_duration_input"
-                    xysize (250, 25)
-                    style input_box
-                    action NullAction()
-                    add Input(hover_color="#3399ff",size=28, color="#000", default="", changed=renpy.store.task_to_add.set_duration, length=5)
-
+                input id "task_duration_input" size 28 color "#000" default "" changed renpy.store.task_to_add.set_duration length 5
             textbutton _("Save Task") action [
                 Function(renpy_store_task_submit),
                 Hide("addTaskDuration"),
@@ -72,3 +71,5 @@ screen addTaskDuration(parameter):
             ]
             textbutton _("Cancel") action [Hide("addTaskPriority"), Show("planner"), Function(renpy_store_task_reset)]
             textbutton _("Back") action [Hide("addTaskDuration"), Show("addTaskPriority", parameter=parameter)]
+
+

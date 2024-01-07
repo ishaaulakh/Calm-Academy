@@ -993,7 +993,6 @@ screen gamepad_help():
 
     textbutton _("Calibrate") action GamepadCalibrate()
 
-
 style help_button is gui_button
 style help_button_text is gui_button_text
 style help_label is gui_label
