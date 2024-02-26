@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/tools.rpy", line 19: keyword argument u'action' appears more than once in a textbutton statement.
-    xalign 0.5action[Show("open_file", entry=entry)]
-                    ^
+File "game/script.rpy", line 2: unexpected EOF while parsing
+    Character('Ellie', color="#6ab2e6"))
+                                        ^
 
 Ren'Py Version: Ren'Py 7.4.8.1895
-Sat Jan  6 18:33:42 2024
+Sun Feb 25 17:50:20 2024

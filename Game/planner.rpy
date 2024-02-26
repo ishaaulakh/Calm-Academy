@@ -1,9 +1,9 @@
-screen planner:
+screen planner():
     modal True
     python:
         day_list = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","Other"]
-        xalign_values = [0.04, 0.34, 0.66, 0.96, 0.04, 0.34, 0.66, 0.96]
-        yalign_values = [0.2, 0.2, 0.2, 0.2, 0.96, 0.96, 0.96, 0.96]
+        xalign_values = [0.04, 0.347, 0.653, 0.96, 0.04, 0.347, 0.653, 0.96]
+        yalign_values = [0.18, 0.18, 0.18, 0.18, 0.87, 0.87, 0.87, 0.87]
 
         mon_tasks = renpy_store_get_tasks_on_day(day_list[0])
         tue_tasks = renpy_store_get_tasks_on_day(day_list[1])
@@ -17,14 +17,23 @@ screen planner:
         week_tasks = [mon_tasks, tue_tasks, wed_tasks, thr_tasks, fri_tasks, sat_tasks, sun_tasks,other_tasks]
     
     frame:
-        xalign 0.5 yalign 0.04
+        xalign 0.5 yalign 0.02
         xsize 1200
         ymaximum 100
         hbox:
-            textbutton _("Back") action Rollback()
+            imagebutton:
+                    xalign 0.5
+                    idle "lback.png"
+                    hover "lback_hover.png"
+                    action Rollback()
             text "   Today's date is [renpy.store.formatted_date]   "
             xalign 0.5
-            textbutton _("Clear") action[Show("clearTask")]
+            yalign 0.03
+            imagebutton:
+                    xalign 0.5
+                    idle "Clear.png"
+                    hover "HClear.png"
+                    action[Show("clearTask")]
 
     for i in range(8):
         python:
@@ -35,8 +44,8 @@ screen planner:
         frame:
             xalign day_xalign
             yalign day_yalign
-            xmaximum 275  
-            ymaximum 300
+            xmaximum 280  
+            ymaximum 290
 
             vbox:
                 viewport:

@@ -1,26 +1,38 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 162, in script
-    $ renpy.call(play_video)
-  File "game/script.rpy", line 162, in <module>
-    $ renpy.call(play_video)
-NameError: name 'play_video' is not defined
+  File "renpy/common/00start.rpy", line 213, in script call
+    call _load_reload_game from _call__load_reload_game_1
+  File "renpy/common/00keymap.rpy", line 504, in script
+    python hide:
+  File "renpy/common/00keymap.rpy", line 504, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 514, in _execute_python_hide
+    renpy.load("_reload-2")
+AttributeError: 'StoreModule' object has no attribute 'is_positive_float'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 162, in script
-    $ renpy.call(play_video)
-  File "/Users/ishaaulakh/Documents/Documents - Isha’s MacBook Air/renpy-7.4.8-sdk/renpy/ast.py", line 923, in execute
+  File "renpy/common/00start.rpy", line 213, in script call
+    call _load_reload_game from _call__load_reload_game_1
+  File "renpy/common/00keymap.rpy", line 504, in script
+    python hide:
+  File "/Applications/renpy-7.4.8-sdk/renpy/ast.py", line 923, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "/Users/ishaaulakh/Documents/Documents - Isha’s MacBook Air/renpy-7.4.8-sdk/renpy/python.py", line 2235, in py_exec_bytecode
+  File "/Applications/renpy-7.4.8-sdk/renpy/python.py", line 2235, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/script.rpy", line 162, in <module>
-    $ renpy.call(play_video)
-NameError: name 'play_video' is not defined
+  File "renpy/common/00keymap.rpy", line 504, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 514, in _execute_python_hide
+    renpy.load("_reload-2")
+  File "/Applications/renpy-7.4.8-sdk/renpy/loadsave.py", line 770, in load
+    roots, log = loads(location.load(filename))
+  File "/Applications/renpy-7.4.8-sdk/renpy/loadsave.py", line 63, in loads
+    return cPickle.loads(s)
+AttributeError: 'StoreModule' object has no attribute 'is_positive_float'
 
-Darwin-23.1.0-x86_64-i386-64bit
+Darwin-23.3.0-x86_64-i386-64bit
 Ren'Py 7.4.8.1895
 Calm Academy Beta
-Sat Jan  6 17:05:40 2024
+Sun Feb 25 18:54:56 2024

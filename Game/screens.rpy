@@ -24,9 +24,8 @@ style hyperlink_text:
 style gui_text:
     properties gui.text_properties("interface")
 
-
 style button:
-    properties gui.button_properties("button")
+    properties gui.button_properties("button") 
 
 style button_text is gui_text:
     properties gui.text_properties("button")
@@ -94,12 +93,6 @@ style frame:
 ## and id "window" to apply style properties.
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#say
-
-screen text_example():
-    frame:
-        xalign 0.5 ypos 50
-        text _("Like this entry? Click save below!"):
-            size 20
  
 
 screen say(who, what):
@@ -259,11 +252,23 @@ screen quick_menu():
             style_prefix "quick"
 
             xalign 0.5
-            yalign 1.0
+            yalign 0.99
 
-            textbutton _("Back") action Rollback()
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Prefs") action ShowMenu('preferences')
+            imagebutton:
+                idle "lback.png"
+                hover "lback_hover.png"
+                action Rollback()
+            # textbutton _("Save") action ShowMenu('save') 
+            # textbutton _("Tools") action Jump("tools") 
+            # textbutton _("Activities") action Jump("activities") 
+            imagebutton:
+                idle "Pref.png"
+                hover "HPref.png"
+                action ShowMenu('preferences')
+            imagebutton:
+                idle "MainM.png"
+                hover "HMainM.png"
+                action MainMenu()
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -302,11 +307,9 @@ screen navigation():
 
         spacing gui.navigation_spacing
 
-        if main_menu:
+        textbutton _("Start!") action Start()
 
-            textbutton _("New User") action Start()
-
-        textbutton _("Returning User") action ShowMenu("load")
+        # textbutton _("Returning User") action ShowMenu("load")
 
         textbutton _("Preferences") action ShowMenu("preferences")
 
@@ -314,7 +317,7 @@ screen navigation():
 
             textbutton _("End Replay") action EndReplay(confirm=True)
 
-        elif not main_menu:
+        if not main_menu:
 
             textbutton _("Main Menu") action MainMenu()
 
@@ -323,13 +326,13 @@ screen navigation():
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
             ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
+            textbutton _("Controls") action ShowMenu("help")
 
         if renpy.variant("pc"):
 
             ## The quit button is banned on iOS and unnecessary on Android and
             ## Web.
-            textbutton _("Quit") action Quit(confirm=not main_menu)
+            textbutton _("Quit App") action Quit(confirm=not main_menu)
 
 
 style navigation_button is gui_button
@@ -566,7 +569,6 @@ screen about():
 style about_label is gui_label
 style about_label_text is gui_label_text
 style about_text is gui_text
-
 style about_label_text:
     size gui.label_text_size
 
@@ -760,25 +762,16 @@ screen preferences():
                         hbox:
                             bar value Preference("music volume")
 
-                    if config.has_sound:
+                    # if config.has_sound:
 
-                        label _("Sound Volume")
+                    #     label _("Sound Volume")
 
-                        hbox:
-                            bar value Preference("sound volume")
+                    #     hbox:
+                    #         bar value Preference("sound volume")
 
-                            if config.sample_sound:
-                                textbutton _("Test") action Play("sound", config.sample_sound)
+                    #         if config.sample_sound:
+                    #             textbutton _("Test") action Play("sound", config.sample_sound)
 
-
-                    if config.has_voice:
-                        label _("Voice Volume")
-
-                        hbox:
-                            bar value Preference("voice volume")
-
-                            if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
 
                     if config.has_music or config.has_sound or config.has_voice:
                         null height gui.pref_spacing
@@ -871,7 +864,7 @@ screen help():
 
     default device = "keyboard"
 
-    use game_menu(_("Help"), scroll="viewport"):
+    use game_menu(_("Controls"), scroll="viewport"):
 
         style_prefix "help"
 
@@ -910,7 +903,7 @@ screen keyboard_help():
 
     hbox:
         label _("Escape")
-        text _("Accesses the game menu.")
+        text _("Accesses the app menu.")
 
     hbox:
         label _("Ctrl")
@@ -920,25 +913,25 @@ screen keyboard_help():
         label _("Tab")
         text _("Toggles dialogue skipping.")
 
-    hbox:
-        label _("Page Up")
-        text _("Rolls back to earlier dialogue.")
+    # hbox:
+    #     label _("Page Up")
+    #     text _("Rolls back to earlier dialogue.")
 
-    hbox:
-        label _("Page Down")
-        text _("Rolls forward to later dialogue.")
+    # hbox:
+    #     label _("Page Down")
+    #     text _("Rolls forward to later dialogue.")
 
-    hbox:
-        label "H"
-        text _("Hides the user interface.")
+    # hbox:
+    #     label "H"
+    #     text _("Hides the user interface.")
 
-    hbox:
-        label "S"
-        text _("Takes a screenshot.")
+    # hbox:
+    #     label "S"
+    #     text _("Takes a screenshot.")
 
-    hbox:
-        label "V"
-        text _("Toggles assistive {a=https://www.renpy.org/l/voicing}self-voicing{/a}.")
+    # hbox:
+    #     label "V"
+    #     text _("Toggles assistive {a=https://www.renpy.org/l/voicing}self-voicing{/a}.")
 
 
 screen mouse_help():
